@@ -21,6 +21,7 @@ var nTapeOffset = 0;		/* the logical position on TM tape of the first character 
 var nHeadPosition = 0;		/* the position of the TM's head on its tape. Initially zero; may be negative if TM moves to left */
 var sState = "0";
 var nSteps = 0;
+var variant = 0;			/* 0 - Default   1 - Sipser */
 var hRunTimer = null;
 var aProgram = new Object();
 /* aProgram is a double asociative array, indexed first by state then by symbol.
@@ -68,6 +69,10 @@ function Step()
 		sNewState = (oInstruction.newState == "*" ? sState : oInstruction.newState);
 		sNewSymbol = (oInstruction.newSymbol == "*" ? sHeadSymbol : oInstruction.newSymbol);
 		nAction = (oInstruction.action.toLowerCase() == "r" ? 1 : (oInstruction.action.toLowerCase() == "l" ? -1 : 0));
+		/* Sipser */
+		if (variant == 1 && nHeadPosition == 0 && nAction == -1) {
+			nAction = 0;
+		}
 		nLineNumber = oInstruction.sourceLineNumber;
 	} else {
 		/* No matching rule found; halt */
@@ -193,6 +198,15 @@ function Reset()
 	sInitialState = $.trim( sInitialState ).split(/\s+/)[0];
 	if( !sInitialState || sInitialState == "" ) sInitialState = "0";
 	sState = sInitialState;
+	
+	/* Initialise variant */
+	variant = $("#VariantSelect")[0].selectedIndex;
+	if (variant == 1)
+	{
+		$("#TapeValues").addClass("SipserMode");
+	} else {
+		$("#TapeValues").removeClass("SipserMode");
+	}
 	
 	nSteps = 0;
 	bIsReset = true;
@@ -426,6 +440,7 @@ function SaveMachineSnapshot()
 		"initialtape": $("#InitialInput")[0].value,
 		"initialstate": $("#InitialState")[0].value,
 		"fullspeed": bFullSpeed,
+		"variant": variant,
 		"version": 1		/* Internal version number */
 	});
 }
@@ -449,6 +464,19 @@ function LoadMachineSnapshot( oObj )
 	if( oObj.fullspeed ) {
 		$("#SpeedCheckbox")[0].checked = oObj.fullspeed;
 		bFullSpeed = oObj.fullspeed;
+	}
+	if (oObj.variant) {
+		variant = oObj.variant;
+		$("#VariantSelect").val(oObj.variant);
+	} else {
+		variant = 0;
+		$("#VariantSelect").val(0);
+	}
+	if (variant == 1)
+	{
+		$("#TapeValues").addClass("SipserMode");
+	} else {
+		$("#TapeValues").removeClass("SipserMode");
 	}
 	aUndoList = [];
 	if( sState.substring(0,4).toLowerCase() == "halt" ) {
