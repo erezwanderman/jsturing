@@ -467,6 +467,7 @@ function LoadMachineSnapshot( oObj )
 	}
 	if (oObj.variant) {
 		variant = oObj.variant;
+<<<<<<< HEAD
 		$("#VariantSelect").val(oObj.variant);
 	} else {
 		variant = 0;
@@ -477,6 +478,12 @@ function LoadMachineSnapshot( oObj )
 		$("#TapeValues").addClass("SipserMode");
 	} else {
 		$("#TapeValues").removeClass("SipserMode");
+=======
+		$("#VariantSelect")[0].val(oObj.variant);
+	} else {
+		variant = 0;
+		$("#VariantSelect")[0].val(0);
+>>>>>>> a755a4e6c9ed42c50c597fc641d56b2c89c23b49
 	}
 	aUndoList = [];
 	if( sState.substring(0,4).toLowerCase() == "halt" ) {
