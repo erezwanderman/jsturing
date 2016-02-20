@@ -201,8 +201,7 @@ function Reset()
 	
 	/* Initialise variant */
 	variant = $("#VariantSelect")[0].selectedIndex;
-	if (variant == 1)
-	{
+	if (variant == 1) {
 		$("#TapeValues").addClass("SipserMode");
 	} else {
 		$("#TapeValues").removeClass("SipserMode");
@@ -472,8 +471,7 @@ function LoadMachineSnapshot( oObj )
 		variant = 0;
 		$("#VariantSelect").val(0);
 	}
-	if (variant == 1)
-	{
+	if (variant == 1) {
 		$("#TapeValues").addClass("SipserMode");
 	} else {
 		$("#TapeValues").removeClass("SipserMode");
@@ -782,8 +780,7 @@ function LoadSampleProgram( zName, zFriendlyName, bInitial )
 			$("#InitialState")[0].value = "0";
 			variant = 0;
 			$("#VariantSelect").val(0);
-			if (variant == 1)
-			{
+			if (variant == 1) {
 				$("#TapeValues").addClass("SipserMode");
 			} else {
 				$("#TapeValues").removeClass("SipserMode");
