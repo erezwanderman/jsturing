@@ -50,7 +50,7 @@
     <div class="BoxTitle">Tape</div>
     <div id="MachineTape" class="MachineStatusBox" title="This is the Turing machine's tape. The head position is indicated by the highlighted cell and arrow.">
      <!-- the following pre elements must be on a single line with no whitespace between them !-->
-     <div id="RunningTapeDisplay"><pre id="LeftTape" class="tape"></pre><div id="ActiveTapeArea"><pre id="ActiveTape" class="tape"> </pre><div id="MachineHead"><div class="HeadTop"></div><div class="HeadBody">Head</div></div></div><pre id="RightTape" class="tape"></pre></div>
+     <div id="RunningTapeDisplay"><div id="TapeValues"><pre id="LeftTape" class="tape"></pre><div id="ActiveTapeArea"><pre id="ActiveTape" class="tape"> </pre><div id="MachineHead"><div class="HeadTop"></div><div class="HeadBody">Head</div></div></div><pre id="RightTape" class="tape"></pre></div></div>
     </div> <!-- div MachineTape !-->
    </div>
 
@@ -102,6 +102,12 @@
      <div id="MachineControlBlock">
       <div class="BoxTitle">Controls</div>
       <div id="MachineButtonsBlock">
+       <div>Variant
+         <select id="VariantSelect">
+           <option value="0">Default</option>
+           <option value="1">Sipser</option>
+         </select>
+       </div>
        <button id="RunButton" onclick="RunButton();" title="Start the machine running">Run</button> <!-- &#x25b8; !--> <!-- Unicode 'play' symbol !-->
        <span title="If enabled, runs as fast as your browser &amp; computer allow">
         <input type="checkbox" id="SpeedCheckbox" onclick="SpeedCheckbox();">Run at full speed

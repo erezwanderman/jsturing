@@ -55,8 +55,10 @@ body {
   padding-left: 0px;
   font-size: x-large;
   margin-bottom: 1em;
-  overflow: auto;
+  overflow-x: auto;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -95,6 +97,14 @@ body {
 /*  overflow: auto; */
   height: 2.5em;
   white-space: pre;
+}
+
+/* #TapeValues { */
+.SipserMode {
+  border-left: 1px solid red;
+  border-bottom: 1px solid red;
+  border-top: 1px solid red;
+  padding: 1px;
 }
 
 #InitialTapeDisplay {
